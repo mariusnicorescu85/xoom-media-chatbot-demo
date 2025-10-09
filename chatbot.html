@@ -192,5 +192,51 @@
 
     <div id="root"></div>
     <script type="text/babel" src="chatbot.js"></script>
+
+    <!-- Reset Demo Button -->
+    <button
+      id="resetChatBtn"
+      onclick="resetChatDemo()"
+      style="
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(239, 68, 68, 0.9);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 600;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        z-index: 9998;
+        transition: all 0.3s;
+      "
+    >
+      🔄 Reset Demo
+    </button>
+
+    <script>
+      function resetChatDemo() {
+        if (
+          confirm("Reset chat demo? This will clear your conversation history.")
+        ) {
+          localStorage.removeItem("xoom_chat_session_id");
+          location.reload();
+        }
+      }
+
+      // Hover effect
+      const resetBtn = document.getElementById("resetChatBtn");
+      resetBtn.addEventListener("mouseenter", () => {
+        resetBtn.style.background = "rgba(220, 38, 38, 1)";
+        resetBtn.style.transform = "scale(1.05)";
+      });
+      resetBtn.addEventListener("mouseleave", () => {
+        resetBtn.style.background = "rgba(239, 68, 68, 0.9)";
+        resetBtn.style.transform = "scale(1)";
+      });
+    </script>
   </body>
 </html>

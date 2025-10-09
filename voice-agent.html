@@ -464,6 +464,18 @@
         statusArea.innerHTML = '<p class="status-text idle">Processing...</p>';
 
         try {
+          // Get or create session ID for conversation memory
+          let sessionId = localStorage.getItem("xoom_voice_session_id");
+          if (!sessionId) {
+            sessionId =
+              "voice_" +
+              Date.now() +
+              "_" +
+              Math.random().toString(36).substr(2, 9);
+            localStorage.setItem("xoom_voice_session_id", sessionId);
+            console.log("Created new voice session:", sessionId);
+          }
+
           const webhookUrl =
             "https://nuvaleoai.app.n8n.cloud/webhook/xoom-chatbot";
           const response = await fetch(webhookUrl, {
@@ -471,6 +483,8 @@
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               message: text,
+              sessionId: sessionId, // ← THIS IS NEW
+              source: "voice", // ← THIS IS NEW
               timestamp: new Date().toISOString(),
             }),
           });
@@ -618,6 +632,64 @@
           speechSynthesis.getVoices();
         };
       }
+    </script>
+
+    <!-- Reset Demo Button -->
+    <button
+      id="resetVoiceBtn"
+      onclick="resetVoiceDemo()"
+      style="
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(239, 68, 68, 0.9);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 600;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        z-index: 9998;
+        transition: all 0.3s;
+      "
+    >
+      🔄 Reset Demo
+    </button>
+
+    <script>
+      function resetVoiceDemo() {
+        if (
+          confirm(
+            "Reset voice demo? This will clear your conversation history."
+          )
+        ) {
+          // Stop any active processes
+          if (isListening) stopListening();
+          if (isSpeaking) stopSpeaking();
+
+          // Clear data
+          localStorage.removeItem("xoom_voice_session_id");
+          conversation = [];
+          messagesContainer.innerHTML = "";
+          conversationArea.classList.add("hidden");
+
+          // Reload page
+          location.reload();
+        }
+      }
+
+      // Hover effect
+      const resetBtn = document.getElementById("resetVoiceBtn");
+      resetBtn.addEventListener("mouseenter", () => {
+        resetBtn.style.background = "rgba(220, 38, 38, 1)";
+        resetBtn.style.transform = "scale(1.05)";
+      });
+      resetBtn.addEventListener("mouseleave", () => {
+        resetBtn.style.background = "rgba(239, 68, 68, 0.9)";
+        resetBtn.style.transform = "scale(1)";
+      });
     </script>
   </body>
 </html>

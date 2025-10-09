@@ -108,12 +108,13 @@ function XoomChatbot() {
         body: JSON.stringify({
           message: userMessage,
           sessionId: sessionId,
+          source: "chat", // ← THIS IS NEW
           timestamp: new Date().toISOString(),
         }),
       });
 
       const data = await response.json();
-      console.log("AI Response:", data); // Debug log
+      console.log("AI Response:", data);
 
       return (
         data.response ||
