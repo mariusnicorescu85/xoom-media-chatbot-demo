@@ -36,6 +36,24 @@
         max-width: 1200px;
         width: 100%;
       }
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: white;
+        text-decoration: none;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 10px 20px;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        margin-bottom: 30px;
+        transition: background 0.3s;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+      .back-button:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
       .demo-container h1 {
         font-size: 3rem;
         margin-bottom: 1rem;
@@ -122,6 +140,8 @@
   </head>
   <body>
     <div class="demo-container">
+      <a href="index.html" class="back-button"> ← Back to Demos </a>
+
       <h1>🚀 Xoom Media AI Chatbot</h1>
       <p class="pulse">
         Click the chat icon in the bottom right corner to experience AI-powered
@@ -146,7 +166,7 @@
           <div>💡 "What services do you offer?"</div>
           <div>💰 "How much does a website cost?"</div>
           <div>📈 "Tell me about your SEO services"</div>
-          <div>📱 "I need help with social media"</div>
+          <div>📅 "I'd like to book a consultation"</div>
         </div>
       </div>
 
@@ -164,8 +184,8 @@
           <p style="font-size: 0.9rem">Powered by OpenAI</p>
         </div>
         <div class="feature-card">
-          <h3>📊 Tailored for Xoom</h3>
-          <p style="font-size: 0.9rem">Knows all your services</p>
+          <h3>📅 Easy Booking</h3>
+          <p style="font-size: 0.9rem">Schedule consultations</p>
         </div>
       </div>
     </div>

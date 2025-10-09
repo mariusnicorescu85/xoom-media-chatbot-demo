@@ -240,6 +240,27 @@
   <body>
     <div class="container">
       <div class="header">
+        <a
+          href="index.html"
+          style="
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            transition: background 0.3s;
+            backdrop-filter: blur(10px);
+          "
+          onmouseover="this.style.background='rgba(255,255,255,0.3)'"
+          onmouseout="this.style.background='rgba(255,255,255,0.2)'"
+        >
+          ← Back to Demos
+        </a>
         <h1>🎙️ Xoom Voice Agent</h1>
         <p>Speak naturally with our AI assistant</p>
       </div>
@@ -281,10 +302,30 @@
           <p>Instant responses</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">🤖</div>
-          <h4>AI Powered</h4>
-          <p>Smart conversations</p>
+          <div class="feature-icon">📅</div>
+          <h4>Easy Booking</h4>
+          <p>Schedule consultations</p>
         </div>
+      </div>
+
+      <div
+        style="
+          background: rgba(255, 255, 255, 0.15);
+          backdrop-filter: blur(10px);
+          padding: 20px;
+          border-radius: 12px;
+          margin-top: 20px;
+          color: white;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+        "
+      >
+        <h3 style="margin: 0 0 15px 0; font-size: 1.1rem">💡 Try saying:</h3>
+        <ul style="margin: 0; padding-left: 20px; line-height: 1.8">
+          <li>"What services do you offer?"</li>
+          <li>"I'd like to book a consultation"</li>
+          <li>"Tell me about your pricing"</li>
+          <li>"I need help with social media"</li>
+        </ul>
       </div>
     </div>
 
