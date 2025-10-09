@@ -89,7 +89,15 @@ function XoomChatbot() {
 
   const getBotResponse = async (userMessage) => {
     try {
-      // IMPORTANT: Replace with your actual n8n webhook URL
+      // Get or create session ID for conversation memory
+      let sessionId = localStorage.getItem("xoom_chat_session_id");
+      if (!sessionId) {
+        sessionId =
+          "chat_" + Date.now() + "_" + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem("xoom_chat_session_id", sessionId);
+        console.log("Created new session:", sessionId);
+      }
+
       const webhookUrl = "https://nuvaleoai.app.n8n.cloud/webhook/xoom-chatbot";
 
       const response = await fetch(webhookUrl, {
@@ -99,11 +107,14 @@ function XoomChatbot() {
         },
         body: JSON.stringify({
           message: userMessage,
+          sessionId: sessionId,
           timestamp: new Date().toISOString(),
         }),
       });
 
       const data = await response.json();
+      console.log("AI Response:", data); // Debug log
+
       return (
         data.response ||
         data.message ||
